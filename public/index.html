@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PodometroJS</title>
+</head>
+<body>
+  <h1>Hola, soy un podometro</h1>
+
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+
+
+  <script>
+    const start = document.querySelector('#start');
+    const stop = document.querySelector('#stop');
+    const _data = [];
+
+    start.addEventListener("click", () => {
+      navigator.geolocation.watchPosition(
+        data => {
+          console.log(data);
+          _data.push({lat: data.coords.latitude, long: data.coords.longitude, time: data.timestamp, speed: data.coords.speed});
+          window.localStorage.setItem('data', JSON.stringify(_data));
+        },
+        e => console.log(e),
+        {
+          enableHighAccuracy: true
+        }
+      )
+    });
+
+    stop.addEventListener("click", () => {
+      fetch('http://localhost:3000/tracking', {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(_data),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+
+        window.localStorage.removeItem('data');
+    });
+
+
+  </script>
+</body>
+</html>
