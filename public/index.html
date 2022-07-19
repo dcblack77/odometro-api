@@ -33,7 +33,7 @@
     });
 
     stop.addEventListener("click", () => {
-      fetch('http://localhost:3000/tracking', {
+      fetch('https://podometro-js.herokuapp.com/tracking', {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(_data),
         headers:{
