@@ -22,6 +22,19 @@ app.post('/tracking', async (req, res) => {
   });
 });
 
+app.get('/track', async (req, res) => {
+  const track = await Track.findOne({_id: '62d78074cf95ca4fde4f88f5'});
+
+  const coords = track.positions.map(item => [item.long, item.lat])
+
+  res.json({
+    track,
+    coords
+  })
+});
+
+
+
 async function bootstrap() {
   await app.listen(process.env.PORT);
   console.log(`Server running in port ${process.env.PORT}`);
