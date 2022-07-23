@@ -21,8 +21,8 @@
     start.addEventListener("click", () => {
       navigator.geolocation.watchPosition(
         data => {
-          console.log(data);
           _data.push({lat: data.coords.latitude, long: data.coords.longitude, time: data.timestamp, speed: data.coords.speed});
+          console.log(_data)
           window.localStorage.setItem('data', JSON.stringify(_data));
         },
         e => console.log(e),
@@ -33,6 +33,8 @@
     });
 
     stop.addEventListener("click", () => {
+
+      navigator.geolocation.
       fetch('https://podometro-js.herokuapp.com/tracking', {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(_data),
