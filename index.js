@@ -14,9 +14,8 @@ app.use(require('cors')())
 
 app.post('/tracking', async (req, res) => {
   try {
-    console.log(`host: ${req.url} | method: ${req.method} | ${new Date().toDateString()}`)
+    console.log(`host: ${req.url} | method: ${req.method} | ${new Date().toDateString()}`, req.body);
     const newTrack = new Track(req.body);
-    console.log(body)
     newTrack.save();
     res.json({
       track: newTrack
