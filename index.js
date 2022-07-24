@@ -14,12 +14,8 @@ app.use(require('cors')())
 
 app.post('/tracking', async (req, res) => {
   try {
-    let body = {
-      positions: req.body,
-      id: new Date().toDateString()
-    }
     console.log(`host: ${req.url} | method: ${req.method} | ${new Date().toDateString()}`)
-    const newTrack = new Track(body);
+    const newTrack = new Track(req.body);
     console.log(body)
     newTrack.save();
     res.json({
@@ -28,7 +24,6 @@ app.post('/tracking', async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 });
 
 app.get('/track', async (req, res) => {
