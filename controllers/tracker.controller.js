@@ -18,9 +18,7 @@ async function getTrackers(req, res) {
                                   .skip(0)
                                   .limit(4)
                                   .sort({_id: 'desc'});
-    return res.json({
-      trackers
-    });
+    return res.json(trackers);
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -30,9 +28,7 @@ async function getTrackers(req, res) {
 async function getTrackerById(req, res) {
   try {
     const tracker = await Tracker.findById(req.params.id);
-    return res.json({
-      tracker
-    });   
+    return res.json(tracker);   
   } catch (error) {
     return res.status(500).json(error);
   }
