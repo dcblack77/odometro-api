@@ -4,7 +4,7 @@ import 'https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js';
 
 
 async function getData() {
-  let data = await fetch('http://localhost:3000/track');
+  let data = await fetch('https://podometro-js.herokuapp.com/api/trackers/62de4db17e8c6342eff8466b');
   return await data.json();
 }
 const dataFetch = await getData()

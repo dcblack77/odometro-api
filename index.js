@@ -20,10 +20,10 @@ app.use(require('cors')());
 
 app.use('/api', routes);
 
-app.get('/export', async (req, res) => {
+app.get('/export/:id', async (req, res) => {
   try {
-    const track = await Track.findOne({_id: '62d78075cf95ca4fde4f88f7'});
-    const xls = json2xls(track.positions);
+    const track = await Track.findById(req.params.id);
+    const xls = json2xls(track.coords);
     await writeFileSync(`./xls/data-${track._id}.xlsx`, xls, 'binary');
     res.json({
       ok: true
