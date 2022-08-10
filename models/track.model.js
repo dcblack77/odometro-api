@@ -8,7 +8,7 @@ const trackSchema = new Schema({
     },
     finish: {
       type: String,
-      default: new Date(Date.now()).getUTCDate()
+      default: new Date(Date.now()).toISOString()
     }
   },
   totalKmtrs: Number,
