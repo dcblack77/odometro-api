@@ -2,13 +2,13 @@ const { Schema, model } = require('mongoose');
 
 const trackSchema = new Schema({
   timestamp: {
-    init: {
-      type: Date,
+    initial: {
+      type: String,
       require: true
     },
     finish: {
-      type: Date,
-      default: new Date().getUTCDate()
+      type: String,
+      default: new Date(Date.now()).getUTCDate()
     }
   },
   totalKmtrs: Number,
